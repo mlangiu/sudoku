@@ -1,0 +1,24 @@
+{
+  "name": "sudoku-solver",
+  "version-string": "0.1.0",
+  "description": "Toy Sudoku solver demonstrating modern CMake + vcpkg manifest",
+  "dependencies": [
+    "eigen3"
+  ],
+  "features": {
+    "ENABLE_QT": {
+      "description": "Enable Qt GUI",
+      "dependencies": [
+        {
+          "name": "qt6-base",
+          "features": [ "widgets" ]
+        }
+      ]
+    },
+    "ENABLE_CBC": {
+      "description": "Enable MILP solver using CBC",
+      "dependencies": [ "coin-or-cbc" ]
+    }
+  }
+}
+

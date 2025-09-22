@@ -1,0 +1,85 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_FEATURE_FLAGS": "manifests"
+      }
+    },
+
+    {
+      "name": "linux-release",
+      "inherits": ["base"],
+      "description": "Linux x86_64 (uses vcpkg x64-linux triplet)",
+      "cacheVariables": {
+        "VCPKG_DEFAULT_TRIPLET": "x64-linux",
+        "VCPKG_TARGET_TRIPLET": "x64-linux"
+      }
+    },
+
+    {
+      "name": "windows-release",
+      "inherits": ["base"],
+      "description": "Windows x64 (uses vcpkg x64-windows triplet)",
+      "cacheVariables": {
+        "VCPKG_DEFAULT_TRIPLET": "x64-windows",
+        "VCPKG_TARGET_TRIPLET": "x64-windows"
+      }
+    },
+
+    {
+      "name": "android-release",
+      "inherits": ["base"],
+      "description": "Android arm64 build (uses vcpkg arm64-android triplet)",
+      "cacheVariables": {
+        "VCPKG_DEFAULT_TRIPLET": "arm64-android",
+        "VCPKG_TARGET_TRIPLET": "arm64-android",
+        "CMAKE_SYSTEM_NAME": "Android",
+        "ANDROID_ABI": "arm64-v8a",
+        "ANDROID_NATIVE_API_LEVEL": "21",
+	"ENABLE_QT": "OFF",
+        "ENABLE_CBC: "OFF"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "base-build",
+      "hidden": true,
+      "configurePreset": "base",
+      "configuration": "Release",
+      "clean": false
+    },
+
+    {
+      "name": "linux-build",
+      "inherits": ["base-build"],
+      "configurePreset": "linux-release"
+    },
+
+    {
+      "name": "windows-build",
+      "inherits": ["base-build"],
+      "configurePreset": "windows-release"
+    },
+
+    {
+      "name": "android-build",
+      "inherits": ["base-build"],
+      "configurePreset": "android-release"
+    }
+  ]
+}
+
