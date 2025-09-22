@@ -10,14 +10,13 @@
       "name": "base",
       "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}",
+      "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_FEATURE_FLAGS": "manifests"
       }
     },
-
     {
       "name": "linux-release",
       "inherits": ["base"],
@@ -27,7 +26,6 @@
         "VCPKG_TARGET_TRIPLET": "x64-linux"
       }
     },
-
     {
       "name": "windows-release",
       "inherits": ["base"],
@@ -37,7 +35,6 @@
         "VCPKG_TARGET_TRIPLET": "x64-windows"
       }
     },
-
     {
       "name": "android-release",
       "inherits": ["base"],
@@ -49,8 +46,7 @@
         "ANDROID_ABI": "arm64-v8a",
         "ANDROID_NATIVE_API_LEVEL": "21",
 	"ENABLE_QT": "OFF",
-        "ENABLE_CBC: "OFF"
-        }
+        "ENABLE_CBC": "OFF"
       }
     }
   ],
@@ -59,22 +55,18 @@
       "name": "base-build",
       "hidden": true,
       "configurePreset": "base",
-      "configuration": "Release",
-      "clean": false
+      "configuration": "Release"
     },
-
     {
       "name": "linux-build",
       "inherits": ["base-build"],
       "configurePreset": "linux-release"
     },
-
     {
       "name": "windows-build",
       "inherits": ["base-build"],
       "configurePreset": "windows-release"
     },
-
     {
       "name": "android-build",
       "inherits": ["base-build"],

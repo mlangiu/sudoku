@@ -6,7 +6,7 @@
     "eigen3"
   ],
   "features": {
-    "ENABLE_QT": {
+    "qt": {
       "description": "Enable Qt GUI",
       "dependencies": [
         {
@@ -15,7 +15,7 @@
         }
       ]
     },
-    "ENABLE_CBC": {
+    "cbc": {
       "description": "Enable MILP solver using CBC",
       "dependencies": [ "coin-or-cbc" ]
     }

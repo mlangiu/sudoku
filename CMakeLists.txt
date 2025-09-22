@@ -14,8 +14,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 add_executable(${PROJECT_NAME}
-  src/board_test.cpp
-  src/board.cpp
+  src/test.cpp # later: main.cpp
+  src/board.hpp
   src/solver.hpp
 )
 
